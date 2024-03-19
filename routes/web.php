@@ -25,6 +25,11 @@ Route::middleware(['auth'])->group(function () {
     Route::view('/admin', 'admin.home');
     Route::group(['prefix' => 'student'], function () {
         Route::get('', [StudentController::class, 'index']);
+        Route::get('add', [StudentController::class, 'add']);
+        Route::post('add', [StudentController::class, 'create']);
+        Route::get('edit/{id}', [StudentController::class, 'edit']);
+        Route::patch('edit/{id}', [StudentController::class, 'update']);
+        Route::get('delete/{id}', [StudentController::class, 'delete']);
     });
 
 });

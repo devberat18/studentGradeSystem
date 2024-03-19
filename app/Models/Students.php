@@ -9,12 +9,14 @@ class Students extends Model
 {
     use HasFactory;
 
-    protected $table = 'sliders';
+    protected $table = 'students';
 
     protected $fillable = [
         'name',
         'surname',
         'school_number',
         'school_grade',
+        'birth_date',
+        'gender'
     ];
 }
