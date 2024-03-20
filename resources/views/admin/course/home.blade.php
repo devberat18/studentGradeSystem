@@ -24,6 +24,7 @@
                                 <th scope="col">Haftalık Ders Saati</th>
                                 <th scope="col">Ders Kredisi</th>
                                 <th scope="col"></th>
+                                <th scope="col"></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -41,6 +42,8 @@
                                                 <i class="fas fa-edit mr-2"></i>
                                                 Düzenle
                                             </a>
+                                        </td>
+                                        <td>
                                             <a type="button" class="btn btn-danger" href="#deleteModal{{$course->id}}"
                                                data-bs-toggle="modal">
                                                 <i class="fas fa-trash mr-2"></i>

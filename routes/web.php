@@ -1,6 +1,7 @@
 <?php
 use \App\Http\Controllers\StudentController;
 use \App\Http\Controllers\CourseController;
+use \App\Http\Controllers\StudentGradesController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,13 +17,14 @@ use Illuminate\Support\Facades\Auth;
 */
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes(['register' => true]);
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/', function () {
+        return view('admin.home');
+    });
+
     Route::view('/admin', 'admin.home');
     Route::group(['prefix' => 'student'], function () {
         Route::get('', [StudentController::class, 'index']);
@@ -40,6 +42,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('edit/{id}', [CourseController::class, 'edit']);
         Route::patch('edit/{id}', [CourseController::class, 'update']);
         Route::get('delete/{id}', [CourseController::class, 'delete']);
+    });
+
+    Route::group(['prefix' => 'student-grades'], function () {
+        Route::get('', [StudentGradesController::class, 'index']);
+        Route::get('add', [StudentGradesController::class, 'add']);
+        Route::post('add', [StudentGradesController::class, 'create']);
+        Route::get('edit/{id}', [StudentGradesController::class, 'edit']);
+        Route::patch('edit/{id}', [StudentGradesController::class, 'update']);
+        Route::get('delete/{id}', [StudentGradesController::class, 'delete']);
     });
 
 });

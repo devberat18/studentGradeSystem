@@ -21,10 +21,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ url('/student/') }}">Öğrenci</a>
+                    <a class="nav-link" href="{{ url('/student/') }}">Öğrenciler</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/course/') }}">Dersler</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/student-grades/') }}">Ders Notları</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/grade-point-averages/') }}">Genel Not Ortalamaları</a>
                 </li>
             </ul>
         </div>
