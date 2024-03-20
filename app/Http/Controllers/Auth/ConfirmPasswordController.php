@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ConfirmsPasswords;
+use Illuminate\Http\Request;
 
 class ConfirmPasswordController extends Controller
 {
@@ -20,6 +21,29 @@ class ConfirmPasswordController extends Controller
     */
 
     use ConfirmsPasswords;
+
+
+    /**
+     * Display the password confirmation view.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showConfirmForm()
+    {
+        return view('admin.auth.passwords.confirm');
+    }
+
+    /**
+     * Reset the password confirmation timeout.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     */
+    protected function resetPasswordConfirmationTimeout(Request $request)
+    {
+        $request->session()->put('admin.auth.password_confirmed_at', time());
+    }
+
 
     /**
      * Where to redirect users when the intended url fails.

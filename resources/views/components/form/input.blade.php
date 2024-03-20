@@ -1,5 +1,8 @@
 <div class="form-group {{$errors->has($name) ? 'has-error' : ''}}">
-    <label for="{{$name}}">{{ __($label) }}</label>
+    @isset($label)
+        <label for="{{$name}}">{{ __($label) }}</label>
+    @endisset
+
 
     <input
             id="{{$name}}"

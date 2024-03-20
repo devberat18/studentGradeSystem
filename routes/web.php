@@ -1,4 +1,5 @@
 <?php
+use \App\Http\Controllers\IndexController;
 use \App\Http\Controllers\StudentController;
 use \App\Http\Controllers\CourseController;
 use \App\Http\Controllers\StudentGradesController;
@@ -6,23 +7,20 @@ use \App\Http\Controllers\GradePointAveragesController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
+Route::get('', [IndexController::class, 'student_grades']);
+
+Route::get('student-grade', [IndexController::class, 'student_grades']);
+Route::post('student-grade', [IndexController::class, 'student_grades_post']);
+
+Route::get('grade-point-average', [IndexController::class, 'grade_point_averages']);
+Route::post('grade-point-average', [IndexController::class, 'grade_point_averages_post']);
 
 
 Auth::routes(['register' => true]);
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('', [StudentController::class, 'index']);
+
     Route::get('/home', [StudentController::class, 'index']);
 
 
