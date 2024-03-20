@@ -15,33 +15,24 @@
                     </div>
                     <div class="card-body">
                         @if(isset($action) && $action === 'edit')
-                            <form method="POST" action="{{ url('student/edit/'. $student->id) }}"
+                            <form method="POST" action="{{ url('course/edit/'. $course->id) }}"
                                   enctype="multipart/form-data">
                                 @method('PATCH')
                                 @else
 
-                                    <form method="POST" action="{{ url('student/add') }}"
+                                    <form method="POST" action="{{ url('course/add') }}"
                                           enctype="multipart/form-data">
                                         @endif
                                         @csrf
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                @component('components.form.input', ['name' => 'name', 'label' => 'İsim'])@endcomponent
+                                            <div class="col-md-4">
+                                                @component('components.form.input', ['name' => 'course_name', 'label' => 'Ders Adı'])@endcomponent
                                             </div>
-                                            <div class="col-md-6">
-                                                @component('components.form.input', ['name' => 'surname', 'label' => 'Soy İsim'])@endcomponent
+                                            <div class="col-md-4">
+                                                @component('components.form.input', ['name' => 'course_hours', 'label' => 'Haftalık Ders Saati'])@endcomponent
                                             </div>
-                                            <div class="col-md-6">
-                                                @component('components.form.input', ['name' => 'school_number', 'label' => 'Okul Numarası'])@endcomponent
-                                            </div>
-                                            <div class="col-md-6">
-                                                @component('components.form.input', ['name' => 'school_grade', 'label' => 'Sınıf'])@endcomponent
-                                            </div>
-                                            <div class="col-md-6">
-                                                @component('components.form.input', ['name' => 'birth_date', 'type' => 'date', 'label' => 'Doğum Tarihi'])@endcomponent
-                                            </div>
-                                            <div class="col-md-6">
-                                                @component('components.form.select', ['name' => 'gender', 'label' => 'Cinsiyet', 'options' => [['label' => 'Kız', 'value' => "w"], ['label' => 'Erkek', 'value' => "m"]]])@endcomponent
+                                            <div class="col-md-4">
+                                                @component('components.form.input', ['name' => 'course_credit', 'label' => 'Ders Kredisi'])@endcomponent
                                             </div>
                                         </div>
                                         <div class="text-right" style="margin-top: 1rem">
@@ -69,7 +60,6 @@
                                                                 data-bs-dismiss="modal">İptal
                                                         </button>
                                                         <button class="btn btn-success">Evet</button>
-
                                                     </div>
                                                 </div>
                                             </div>
