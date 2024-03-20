@@ -17,7 +17,12 @@ class StudentGrades extends Model
         'course_id',
         'school_term',
         'course_note',
-        'letter_note'
+        'exam_type',
     ];
+
+    public function get_courses()
+    {
+        return $this->hasMany(Courses::class, 'id', 'course_id');
+    }
 
 }

@@ -26,10 +26,12 @@ class StudentGradesController
                     'course' => $course->course_name,
                     'school_term' => $student_grade->school_term,
                     'course_note' => $student_grade->course_note,
-                    'letter_note' => $student_grade->letter_note,
+                    'exam_type' => $student_grade->exam_type,
                 ]
             ];
         }
+
+//        echo "<pre>"; print_r($student_grades_array); die;
 
 
         return view('admin.StudentGrades.home')->with(['student_grades' => $student_grades_array]);
@@ -38,12 +40,7 @@ class StudentGradesController
     public function add()
     {
         $students = Students::all();
-        $students_option = [
-            [
-                'label' => "Öğrenci Seçiniz",
-                'value' => ""
-            ]
-        ];
+        $students_option = [];
         foreach ($students as $student) {
             $students_option = [
                 ...$students_option,
@@ -56,12 +53,7 @@ class StudentGradesController
 
 
         $courses = Courses::all();
-        $courses_option = [
-            [
-                'label' => "Ders Seçiniz",
-                'value' => ""
-            ]
-        ];
+        $courses_option = [];
         foreach ($courses as $course) {
             $courses_option = [
                 ...$courses_option,
@@ -81,8 +73,8 @@ class StudentGradesController
             'student_id' => 'required|integer',
             'course_id' => 'required|integer',
             'school_term' => 'required|string|max:255',
-            'course_note' => 'required',
-            'letter_note' => 'required',
+            'course_note' => 'required|numeric|max:100',
+            'exam_type' => 'required',
         ]);
 
         $attributes = $request->only([
@@ -90,7 +82,7 @@ class StudentGradesController
             'course_id',
             'school_term',
             'course_note',
-            'letter_note'
+            'exam_type',
         ]);
 
         $student_grades = StudentGrades::create($attributes);
@@ -107,7 +99,7 @@ class StudentGradesController
             'course_id' => $student_grade->course_id,
             'school_term' => $student_grade->school_term,
             'course_note' => $student_grade->course_note,
-            'letter_note' => $student_grade->letter_note,
+            'exam_type' => $student_grade->exam_type,
         ]);
 
         $students = Students::all();
@@ -155,7 +147,7 @@ class StudentGradesController
             'course_id' => 'required|integer',
             'school_term' => 'required|string|max:255',
             'course_note' => 'required',
-            'letter_note' => 'required',
+            'exam_type' => 'required',
         ]);
 
         $attributes = $request->only([
@@ -163,7 +155,7 @@ class StudentGradesController
             'course_id',
             'school_term',
             'course_note',
-            'letter_note'
+            'exam_type'
         ]);
 
         StudentGrades::find($id)->update($attributes);

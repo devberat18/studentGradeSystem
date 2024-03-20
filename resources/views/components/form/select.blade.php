@@ -6,10 +6,14 @@
                 type="{{isset($type) ? $type : 'text'}}"
                 class="form-control mb-2 @error($name) is-invalid @enderror"
                 name="{{$name}}"
+            @isset($rerequired)
+             required
+            @endisset
         >
             @isset($placeholder)
                 <option selected disabled>{{__($placeholder)}}</option>
             @endisset
+
             @foreach($options as $option)
                 <option @if(old($name) === $option['value']) selected @endif value="{{$option['value']}}">{{__($option['label'])}}</option>
             @endforeach

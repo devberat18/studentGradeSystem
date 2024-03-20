@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('student_grades', function (Blueprint $table) {
-            $table->string('letter_note')->nullable();
+            $table->string('exam_type')->nullable();
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('student_grades', function (Blueprint $table) {
-            $table->dropColumn('letter_note');
+            $table->dropColumn('exam_type');
         });
     }
 };

@@ -2,6 +2,7 @@
 use \App\Http\Controllers\StudentController;
 use \App\Http\Controllers\CourseController;
 use \App\Http\Controllers\StudentGradesController;
+use \App\Http\Controllers\GradePointAveragesController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,9 +22,9 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes(['register' => true]);
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', function () {
-        return view('admin.home');
-    });
+    Route::get('', [StudentController::class, 'index']);
+    Route::get('/home', [StudentController::class, 'index']);
+
 
     Route::view('/admin', 'admin.home');
     Route::group(['prefix' => 'student'], function () {
@@ -52,5 +53,10 @@ Route::middleware(['auth'])->group(function () {
         Route::patch('edit/{id}', [StudentGradesController::class, 'update']);
         Route::get('delete/{id}', [StudentGradesController::class, 'delete']);
     });
+
+    Route::group(['prefix' => 'grade-point-averages'], function () {
+        Route::get('', [GradePointAveragesController::class, 'index']);
+    });
+
 
 });

@@ -40,7 +40,7 @@
                                         <td scope="row">{{$student->surname}}</td>
                                         <td scope="row">{{$student->school_number}}</td>
                                         <td scope="row">{{$student->school_grade}}</td>
-                                        <td scope="row">{{$student->gender}}</td>
+                                        <td scope="row">{{$student->gender == "m" ? "Erkek" : "Kız" }}</td>
                                         <td scope="row">{{$student->birth_date}}</td>
                                         <td>
                                             <a class="btn btn-primary" href="{{ url('student/edit/'.$student->id) }}"
